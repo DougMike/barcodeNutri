@@ -1,0 +1,76 @@
+# ===============================
+# Visual Studio / .NET 9
+# ===============================
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.DotSettings
+TestResults/
+BuildResults/
+bin/
+obj/
+*.nupkg
+*.snupkg
+*.nuspec
+*.log
+*.vsix
+*.dbmdl
+
+# Rider / JetBrains
+.idea/
+*.iml
+out/
+
+# ===============================
+# Node / Angular 19
+# ===============================
+node_modules/
+dist/
+tmp/
+temp/
+.angular/cache/
+*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# ===============================
+# Angular Build / CLI
+# ===============================
+/dist/
+/.angular/cache/
+/out-tsc/
+
+# ===============================
+# Others
+# ===============================
+*.tgz
+*.zip
+*.tar.gz
+*.log
+<<<<<<< HEAD
+=======
+
+>>>>>>> b8b77b3 (Corrige frontend para ser pasta normal em vez de submódulo)

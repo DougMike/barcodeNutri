@@ -1,0 +1,21 @@
+<h1>Scanner de Código de Barras</h1>
+
+<zxing-scanner
+  [formats]="allowedFormats"
+  (scanSuccess)="onScanSuccess($event)">
+</zxing-scanner>
+
+<div *ngIf="loading">Buscando produto...</div>
+
+<div *ngIf="product">
+  <h2>{{ product.name || '—' }}</h2>
+  <p>Marca: {{ product.brand || '—' }}</p>
+  <ul>
+    <li>Calorias (kcal/100g): {{ product.calories ?? '—' }}</li>
+    <li>Proteínas (g/100g): {{ product.proteins ?? '—' }}</li>
+    <li>Carboidratos (g/100g): {{ product.carbohydrates ?? '—' }}</li>
+    <li>Gorduras (g/100g): {{ product.fats ?? '—' }}</li>
+  </ul>
+</div>
+
+<div *ngIf="error" style="color:red">{{ error }}</div>
