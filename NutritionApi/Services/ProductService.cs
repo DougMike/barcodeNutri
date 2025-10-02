@@ -25,8 +25,9 @@ namespace NutritionApi.Services
 
         public async Task<Product?> GetProductAsync(string barcode)
         {
+            _db.ChangeTracker.Clear();
             // 1) tenta no cache (SQLite)
-            var cached = await _db.Products.FindAsync(barcode);
+            var cached = await _db.Products.AsNoTracking().FirstOrDefaultAsync(bc => bc.Barcode == barcode);
             if (cached != null) return cached;
 
             // 2) consulta OpenFoodFacts

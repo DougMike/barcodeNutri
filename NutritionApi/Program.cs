@@ -6,8 +6,10 @@ using NutritionApi.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // --- Banco de dados (SQLite) ---
-builder.Services.AddDbContext<AppDbContext>(opts =>
-    opts.UseSqlite("Data Source=products.db"));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=products.db")
+           .EnableSensitiveDataLogging()
+           .LogTo(Console.WriteLine, LogLevel.Information));
 
 // --- HttpClient e ProductService ---
 builder.Services.AddHttpClient<ProductService>();
@@ -45,9 +47,6 @@ app.MapGet("/products/{barcode}", async (string barcode, ProductService productS
     var product = await productService.GetProductAsync(barcode);
     return product != null ? Results.Ok(product) : Results.NotFound(new { message = "Produto não encontrado" });
 });
-
-// --- Endpoint teste raiz ---
-app.MapGet("/", () => "API funcionando!");
 
 // --- Rodar app ---
 app.Run();

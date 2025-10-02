@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -11,7 +11,7 @@ import { Product } from '../models/product';
   standalone: true,
   imports: [CommonModule, HttpClientModule, ZXingScannerModule],
   templateUrl: './app.component.html',
-  styleUrls: []
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   product: Product | null = null;
@@ -32,10 +32,7 @@ export class AppComponent {
   onScanSuccess(barcode: string) {
     if (!barcode) return;
 
-    console.log('Código lido:', barcode);
-
     this.loading = true;
-    this.error = '';
     this.product = null;
 
     this.productService.getProduct(barcode).subscribe({
@@ -48,5 +45,10 @@ export class AppComponent {
         this.loading = false;
       }
     });
+  }
+
+  reloadFind(): void{
+    window.location.reload();
+    this.product = null;
   }
 }
